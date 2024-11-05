@@ -1,0 +1,25 @@
+/*Este require se usa para importar las funciones que estan dentro del node_modules*/
+const { series, parallel } = require ('gulp');
+
+function css(done){
+    console.log('Compilando SASS');
+    done();
+}
+function javascript(done){
+    console.log('compilando... JavaScript');
+    done();
+}
+function minificarHTML(done){
+    console.log('Minificando... HTML');
+    done();
+}
+
+/*Exports es para exportar y hacer disponible nuestro codigo de forma externa*/
+/*Asi se llama la funcion que se creo arriba*/
+exports.css = css;
+exports.javascript = javascript;
+exports.minificarHTML = minificarHTML;
+
+exports.default = series(css, javascript, minificarHTML); //Con el series hacemos que podamos ejecutar las tres funciones escribiendo gulp una sola vez en la terminal ya que tiene la palabra default si tuviera otra seria gulp y el nombre que le hayamos colocado.
+
+exports.default = parallel(css, javascript, minificarHTML); //Con el parallel a diferencia del series hacemos que todas las tareas comiencen al mismo tiempo.
